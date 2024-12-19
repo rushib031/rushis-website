@@ -1,0 +1,165 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background: #f4f4f9;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: linear-gradient(to bottom right, #1a202c, #2d3748);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #63b3ed;
+}
+
+.button {
+  background: #3182ce;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.button:hover {
+  background: #63b3ed;
+  transform: scale(1.1);
+}
+
+/* Section Styles */
+.section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.card {
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+/* Carousel */
+.carousel {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+.carousel-item {
+  flex: 0 0 90%; /* Adaptable width for different screen sizes */
+  margin-right: 10px;
+  padding: 20px;
+  background: #3182ce;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+.animated {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Progress bar animation */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar.animate::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  transition: width 1s ease-out;
+  width: var(--progress);
+}
+
+
+
+
+.carousel-item:not(:first-child) {
+  margin-left: 10px;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 5px;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #63b3ed;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #2d3748;
+  color: white;
+}
