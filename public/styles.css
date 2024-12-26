@@ -271,25 +271,45 @@ body {
   border-radius: 8px;
 }
 
-/* Carousel */
-.carousel {
-  display: flex;
-  overflow: hidden;
+.carousel-container {
+  overflow: hidden; /* Ensure only visible items are displayed */
+  width: 100%; /* Full width for the container */
+  height: 300px; /* Adjust height as per design */
   position: relative;
-  margin: 20px auto;
-  max-width: 90%;
+}
+
+.carousel {
+  display: flex; /* Arrange items in a row */
+  transition: transform 0s linear; /* Smooth movement */
 }
 
 .carousel-item {
-  flex: 0 0 90%; /* Adaptable width for different screen sizes */
-  margin-right: 10px;
-  padding: 20px;
-  background: #3182ce;
-  color: white;
+  flex: 0 0 auto; /* Prevent resizing */
+  width: 200px; /* Fixed width for items */
+  margin-right: 40px; /* Consistent spacing */
   text-align: center;
-  border-radius: 5px;
-  transition: transform 0.3s;
 }
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.carousel-item:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+
+
+
 
 [data-animate] {
   opacity: 0; /* Hidden initially */
@@ -328,33 +348,47 @@ body {
 }
 
 /* Progress bar animation */
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background: #e0e0e0;
-  position: relative;
-  overflow: hidden;
+.skills-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
-.progress-bar.animate::after {
-  content: '';
+.skill {
+  flex: 1;
+  text-align: center;
+}
+
+.skill span {
+  font-size: 1.1rem;
+  font-weight: bold;
   display: block;
-  height: 100%;
-  background: linear-gradient(90deg, #4caf50, #81c784);
-  transition: width 1s ease-out;
-  width: var(--progress);
+  margin-bottom: 0.5rem;
 }
 
-.skill span::after {
-  content: attr(data-level) '%';
-  font-size: 0.8rem;
-  margin-left: 5px;
+.progress-bar-container {
+  background: #e0e0e0;
+  border-radius: 10px;
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  margin: 0.5rem auto;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  height: 100%;
+  width: 0; /* Start at 0% for animation */
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+small {
+  font-size: 0.85rem;
   color: #555;
 }
 
-.carousel-item:not(:first-child) {
-  margin-left: 10px;
-}
 
 .carousel-item:hover {
   transform: scale(1.05);
