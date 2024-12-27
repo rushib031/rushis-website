@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const carousel = document.querySelector('.carousel');
     const items = Array.from(carousel.children);
-    const spacing = 70; // Space between items
+    const spacing = 40; // Space between items
     const itemWidth = items[0].offsetWidth + spacing;
     const totalItems = items.length;
     const visibleCount = Math.ceil(window.innerWidth / itemWidth) + 1; // Ensure seamless looping
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function animateCarousel() {
       // Move the carousel to the left
-      offset -= 1.2; // Speed of animation
+      offset -= 5; // Speed of animation
   
       // Reset offset when an item exits completely
       if (offset <= -itemWidth) {
