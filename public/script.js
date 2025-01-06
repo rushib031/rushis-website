@@ -128,26 +128,34 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Initial position of items
     let offset = 0;
+
+    let isPaused = false;
+    carousel.addEventListener('mouseenter', () => { isPaused = true; });
+    carousel.addEventListener('mouseleave', () => { isPaused = false; });
   
     function animateCarousel() {
       // Move the carousel to the left
-      offset -= 5; // Speed of animation
-  
-      // Reset offset when an item exits completely
-      if (offset <= -itemWidth) {
-        offset += itemWidth;
-        // Move the first item to the end of the logical queue
-        const firstItem = carousel.firstElementChild;
-        carousel.appendChild(firstItem);
-      }
-  
-      // Apply the offset as a transform
-      carousel.style.transform = `translateX(${offset}px)`;
-  
-      requestAnimationFrame(animateCarousel);
+        if(!isPaused){
+            offset -= 1.5; // Speed of animation
+    
+            // Reset offset when an item exits completely
+            if (offset <= -itemWidth) {
+                offset += itemWidth;
+                // Move the first item to the end of the logical queue
+                const firstItem = carousel.firstElementChild;
+                carousel.appendChild(firstItem);
+            }
+        
+            // Apply the offset as a transform
+            carousel.style.transform = `translateX(${offset}px)`;
+        
+            
+        }
+        requestAnimationFrame(animateCarousel);
     }
-  
     animateCarousel();
+
+      
   });
   
   
