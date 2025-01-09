@@ -158,6 +158,20 @@ document.addEventListener('DOMContentLoaded', () => {
       
   });
   
+  anime({
+    targets: '#basketball',
+    translateX: [
+        { value: '80vw', duration: 1000 },
+    ],
+    translateY: [
+        { value: '-60vh', duration: 500, easing: 'easeOutQuad' },
+        { value: '0', duration: 500, easing: 'easeInQuad' },
+    ],
+    loop: true,
+    easing: 'linear',
+    delay: 1000, // Pause between loops
+});
+
   
   
   
