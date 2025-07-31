@@ -1,198 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Rushi Bhatt</title>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rushi Bhatt | Cyber Enthusiast</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rushi Bhatt | Portfolio Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --accent: #6366f1;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --muted: #64748b;
+      --card: #fff;
+      --radius: 18px;
+      --shadow: 0 2px 12px rgba(59, 130, 246, 0.04);
+      --transition: 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    [data-theme="dark"] {
+      --primary: #6366f1;
+      --accent: #3b82f6;
+      --bg: #18181b;
+      --text: #f1f5f9;
+      --muted: #a1a1aa;
+      --card: #232336;
+      --shadow: 0 2px 12px rgba(99, 102, 241, 0.08);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+    body {
+      position: relative;
+    }
+    .particle-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      text-align: center;
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(59, 130, 246, 0.08);
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+      background: linear-gradient(90deg, rgba(59, 130, 246, 0.85) 0%, rgba(99, 102, 241, 0.85) 100%);
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 24px rgba(59, 130, 246, 0.12);
+      margin: 0 auto 1.2rem auto;
+      display: block;
+      background: #e0e7ef;
+      transition: border-color var(--transition);
+    }
+    [data-theme="dark"] .profile-img {
+      border-color: var(--accent);
+      background: #232336;
+    }
+    .greeting {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      background: linear-gradient(90deg, #fff 30%, #dbeafe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    [data-theme="dark"] .greeting {
+      background: linear-gradient(90deg, #f1f5f9 30%, #6366f1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .name {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: #e0e7ef;
+    }
+    .contact {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #e0e7ef;
+    }
+    .contact i {
+      margin-right: 0.5em;
+      color: #fff;
+    }
+    .social {
+      margin-top: 0.5rem;
+    }
+    .social a {
+      color: #fff;
+      margin: 0 0.5rem;
+      font-size: 1.3rem;
+      transition: color 0.2s;
+    }
+    .social a:hover {
+      color: #dbeafe;
+    }
+    main {
+      max-width: 700px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    section {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 2.5rem;
+      padding: 2.5rem 2rem;
+      position: relative;
+      z-index: 2;
+      transition: background var(--transition), color var(--transition);
+      backdrop-filter: blur(3px);
+      background: rgba(255, 255, 255, 0.75);
+    }
+    [data-theme="dark"] section {
+      background: rgba(35, 35, 54, 0.75);
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      letter-spacing: 0.01em;
+      transition: color var(--transition);
+    }
+    ul, li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .exp-list, .awards-list, .skills-list, .courses-list {
+      margin: 0;
+      padding: 0;
+    }
+    .exp-item {
+      margin-bottom: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 12px;
+      background: transparent;
+      cursor: pointer;
+    }
+    .exp-item:hover {
+      transform: translateY(-4px) scale(1.025) rotate(-1deg);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.10);
+      background: rgba(99,102,241,0.04);
+    }
+    .exp-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    .exp-org {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .exp-date {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .exp-desc {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .skill {
+      background: var(--bg);
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 0.4em 1em;
+      font-size: 1rem;
+      font-weight: 500;
+      border: 1px solid #e0e7ef;
+      margin-bottom: 0.2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .skill:hover {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.12);
+    }
+    .skill-bar {
+      display: block;
+      height: 7px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0;
+      margin-top: 0.3em;
+      transition: width 1.2s cubic-bezier(.4,2,.6,1);
+    }
+    .courses-list {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-top: 0.7rem;
+      margin-bottom: 0;
+      padding-left: 1.2em;
+      list-style: disc inside;
+    }
+    .awards-list li {
+      margin-bottom: 0.7rem;
+      font-size: 1rem;
+    }
+    .fun-emoji {
+      font-size: 1.5rem;
+      margin-left: 0.3em;
+      vertical-align: middle;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    .fun-emoji.spin {
+      transform: rotate(360deg) scale(1.2);
+    }
+    @media (max-width: 600px) {
+      main { padding: 0 0.5rem; }
+      section { padding: 1.2rem 0.7rem; }
+      .name { font-size: 2rem; }
+      .greeting { font-size: 1.3rem; }
+      .profile-img { width: 80px; height: 80px; }
+    }
+  </style>
 </head>
-<body>
-  <div class="background-container">
-      <div id="court">
-          <div id="hoop"></div>
-          <div id="basketball"></div>
+<body data-theme="light">
+  <canvas class="particle-bg" id="particle-bg"></canvas>
+  <header>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+    <img src="/public/project-images/profile-pic.png" alt="Profile photo of Rushi Bhatt" class="profile-img" id="profile-img">
+    <div class="greeting" id="greeting">Hi, I'm Rushi! <span class="fun-emoji" id="greeting-emoji">👋</span></div>
+    <div class="name">Rushi Rohit Bhatt</div>
+    <div class="subtitle">Bringing problem-solving skills, perseverance, and energy to any position</div>
+    <div class="contact">
+      <span><i class="fas fa-phone-alt"></i> (740) 803-2487</span> &nbsp;|&nbsp;
+      <span><i class="fas fa-envelope"></i> rushibhatt031@gmail.com</span>
+    </div>
+    <div class="social">
+      <a href="mailto:rushibhatt031@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/rushirbhatt" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/rushib031" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>About</h2>
+      <div style="font-size:1.08rem; color:var(--muted);">
+        <strong>Objective:</strong> High-achieving college student, passionate about computer science, mathematics, and algorithms; seeking an internship or part-time job to gain experience and learn new things! I am open to any cyber or software related position!
       </div>
-      <header class="hero">
-          <div class="social-icons">
-              <a href="https://github.com/rushib031" aria-label="GitHub Profile" target="_blank">
-                  <i class="fab fa-github"></i>
-              </a>
-              <a href="https://linkedin.com/in/rushirbhatt" aria-label="LinkedIn Profile" target="_blank">
-                  <i class="fab fa-linkedin"></i>
-              </a>
-          </div>
-          <nav>
-              <ul class="nav-links">
-                  <li><a href="#about" aria-label="Navigate to About section">About</a></li>
-                  <li><a href="#experience" aria-label="Navigate to Experience section">Experience</a></li>
-                  <li><a href="#projects" aria-label="Navigate to Projects section">Projects</a></li>
-                  <li><a href="#skills" aria-label="Navigate to Skills section">Skills</a></li>
-                  <li><a href="#contact" aria-label="Navigate to Contact section">Contact</a></li>
-              </ul>
-          </nav>
-          <div class="hero-content">
-              <h1 class="hero-title">Rushi Bhatt</h1>
-              <p class="hero-subtitle">Cyber Enthusiast | Problem Solver | Analytical Thinker</p>
-          </div>
-      </header>
-  </div>
-
-
-    <main>
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <div class="about-me-table-container">
-              <table class="about-me-table">
-                <tr>
-                  <td class="about-me-text" rowspan="4" style="width: 50%;">
-                    <p>
-                      I have a strong passion for combining technology and creativity. My journey into computer science began in high school with an AP Computer Science course, where I developed a foundational understanding of programming. This experience sparked my interest and led me to participate in CTF competitions and hackathons, where I discovered a deep appreciation for the problem-solving challenges and perseverance inherent in programming.
-
-                      Outside of my professional interests, I engage in activities that stimulate my mind, foster collaboration, and bring balance to my life. Alongside my enthusiasm for basketball and fitness, I enjoy these other hobbies:
-                    </p>
-                  </td>
-                  <td class="hobby">
-                    <strong>Chess</strong>
-                    <p>Love to play chess. Recreationally now, also played competitively for 8 years</p>
-                  </td>
-                  <td class="instagram">
-                    <p><a href="https://link.chess.com/friend/4sweZ0" aria-label="Chess.com Profile" target="_blank">
-                      <i class="fas fa-chess"></i>
-                  </a></p>
-                  </td>                  
-                </tr>
-                <tr>
-                  <td class="hobby">
-                    <strong>Sketching</strong>
-                    <p>Brings peace to the mind and lets me express creative freedom</p>
-                  </td>
-                  <td class="instagram">
-                    <p>
-                      <a href="https://www.instagram.com/rush.in2art/" aria-label="Instagram Profile" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="hobby">
-                    <strong>Hindustani Classical Singing</strong>
-                    <p>Watched the show Bandish Bandits and fell in love with indian classical singing</p>
-                  </td>
-                  <td class="hobby-picture">
-                    <p>
-                      <a href="https://www.tiktok.com/@roosh031?is_from_webapp=1&sender_device=pc" aria-label="TikTok Profile" target="_blank">
-                        <i class="fab fa-tiktok"></i>
-                      </a>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  
-                </tr>
-              </table>
-            </div>
-          </section>
-
-          <section id="experience">
-            <h2>Experience</h2>
-            <div class="timeline">
-              <div class="timeline-event">
-                <div class="timeline-content">
-                  <h3>Student IT Analyst</h3>
-                  <h4>Ohio State University</h4>
-                  <p>Decemeber 2023 - Present</p>
-                  <p>Managing software support and resolved technical issues for students and staff.</p>
-                </div>
-              </div>
-              <div class="timeline-event">
-                <div class="timeline-content">
-                  <h3>Data Engineering Intern</h3>
-                  <h4>AaronBux Wealth Management</h4>
-                  <p>December 2024 - Present</p>
-                  <p>We are tasked with implementing the ETL pipeline with AWS. Actively learning and using AWS S3, Lambda, Redshift, CloudWatch, etc.</p>
-                </div>
-              </div>
-              <div class="timeline-event">
-                <div class="timeline-content">
-                  <h3>New role...</h3>
-                  <h4>Somewhere in the world</h4>
-                  <p>Always Looking for something new</p>
-                  <p>Developing predictive models to predict the chance of me landing an internship</p>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-
-        <section id="projects" class="section animate-on-scroll" data-animate>
-            <h2>Projects</h2>
-            <div class="carousel-container">
-              <div class="carousel">
-                <div class="carousel-item">
-                  <a href="https://rushis-website.onrender.com/"></a>>
-                    <img src="./project-images/PW.png" alt="Project 1" />
-                  </a>
-                  <p>Personal Website is my first personal project! Looking to showcase the rest of my projects off of this. 
-                    Skills Used: Node.js, JS, HTML, CSS
-                  </p>
-                  
-                </div>
-                <div class="carousel-item">
-                  <a href="https://link-to-project2.com">
-                    <img src="./project-images/PIG.png" alt="Project 2" />
-                  </a>
-                  <p>After watching too many FBI shows thought it would be cool to make an intelligence gathering website. 
-                    Still in the works. Skills used: React, HTML, JS, CSS
-                  </p>
-                  
-                </div>
-                <div class="carousel-item">
-                  <a href="https://link-to-project3.com">
-                    <img src="./project-images/MW.png" alt="Project 3" />
-                  </a>
-                  <p>Working on a math challenge website which allows users to practice their math skills competitvely.
-                    Working on adding a leaderboard. Skills used: SQL, React, HTML, JS, CSS 
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-        </section>
-
-        <section id="skills" class="section animate-on-scroll" data-animate>
-          <h2>Skills</h2>
-          <!-- The rows of skills will be dynamically added here -->
-        </section>
-        
-        
-
-        <section id="contact" class="section">
-          <h2>Contact Me</h2>
-          <form class="contact-form" action="your-form-handler-url" method="post">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-          </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Rushi Bhatt</p>
-        <div class="social-icons">
-            <a href="https://github.com/rushib031" aria-label="GitHub Profile" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/rushirbhatt" aria-label="LinkedIn Profile" target="_blank">
-                <i class="fab fa-linkedin"></i>
-            </a>
+    </section>
+    <section>
+      <h2>Experience</h2>
+      <div class="exp-list" id="exp-list">
+        <div class="exp-item">
+          <div class="exp-title">IT Analyst (Part-time)</div>
+          <div class="exp-org">Ohio State University Office of Technology and Digital Innovation</div>
+          <div class="exp-date">December 2023 - Present</div>
+          <div class="exp-desc">Manage call queues and address software-related issues for students, faculty, and staff. Hone technical troubleshooting and customer service skills. Work with remote desktop connection services, Active Directory, ServiceNow, and identity management software.</div>
         </div>
-    </footer>
+        <div class="exp-item">
+          <div class="exp-title">Cybersecurity Club Member</div>
+          <div class="exp-org">Ohio State University</div>
+          <div class="exp-date">December 2023 - Present</div>
+          <div class="exp-desc">Participate in weekly meetings on ethical hacking topics (cryptography, SQL injection, decryption, PWN, etc.). Competed in Buckeye CTF competition, solving ethical hacking challenges with OSU students.</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-title">Data Engineering Intern (Part-time)</div>
+          <div class="exp-org">AaronBux Wealth Management</div>
+          <div class="exp-date">December 2024 - March 2025</div>
+          <div class="exp-desc">Implemented ETL pipeline with AWS. Learned and worked with AWS S3, Lambda, Redshift, CloudWatch, and more.</div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Skills</h2>
+      <div class="skills-list" id="skills-list">
+        <span class="skill" data-skill="Java" data-level="90">Java<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="C" data-level="80">C<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Incident Response" data-level="70">Incident Response<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Assembly" data-level="60">Assembly<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="MATLAB" data-level="60">MATLAB<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="HTML" data-level="95">HTML<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="CSS" data-level="90">CSS<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Python" data-level="85">Python<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Visual Studio" data-level="75">Visual Studio<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Jupyter Notebook" data-level="70">Jupyter Notebook<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Object Oriented Programming" data-level="90">Object Oriented Programming<div class="skill-bar"></div></span>
+      </div>
+      <div style="color:var(--muted); font-size:0.98rem; margin-bottom:0.5rem;">
+        3rd place in Ohio Cyber Range Institute Statewide Capture the Flag competition<br>
+        Working towards CompTIA Security+ Certification (Expected July 2025)
+      </div>
+    </section>
+    <section>
+      <h2>Education</h2>
+      <div style="font-size:1.08rem;">
+        <strong>The Ohio State University (Columbus Campus), Columbus, Ohio</strong><br>
+        August 2022 - December 2025<br>
+        GPA: 3.606 / 4.000<br>
+        Major: Computer Science and Engineering<br>
+        Minor: Mathematics<br>
+        <div style="margin-top:0.7rem; font-weight:600; color:var(--primary);">Relevant Courses:</div>
+        <ul class="courses-list">
+          <li>Information Security</li>
+          <li>Computer Networking</li>
+          <li>Survey of Artificial Intelligence</li>
+          <li>Intro to Information Security</li>
+          <li>Software 2 - Development and Design</li>
+          <li>Linear Algebra</li>
+          <li>Discrete Structures and Algorithms</li>
+          <li>Systems 1 - Low-level Programming and Computer Organization</li>
+          <li>Systems 2 - Introduction to Operating Systems</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2>Awards</h2>
+      <ul class="awards-list">
+        <li><strong>National Merit Commended Scholar</strong> (Top 5% of PSAT - May 2021)</li>
+        <li><strong>Seal of Biliteracy of Spanish</strong> (May 2022)</li>
+        <li><strong>Dean's List</strong> (December 2022 - Present)</li>
+      </ul>
+    </section>
+  </main>
+  <footer style="text-align:center; color:var(--muted); font-size:1rem; padding:2rem 0 1rem 0;">
+    &copy; 2024 Rushi Bhatt
+  </footer>
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    let dark = false;
+    themeToggle.addEventListener('click', () => {
+      dark = !dark;
+      body.setAttribute('data-theme', dark ? 'dark' : 'light');
+      themeToggle.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Fun greeting
+    const greetings = [
+      "Hi, I'm Rushi!",
+      "Welcome!",
+      "Let's connect!",
+      "Namaste!",
+      "Hola!",
+      "Bonjour!",
+      "Ciao!",
+      "Ready to solve problems!",
+      "Cybersecurity Enthusiast!",
+      "Let's build something cool!"
+    ];
+    const emojis = ["👋", "😃", "🚀", "💡", "🛡️", "🎉", "🤖", "🧠", "🌟", "💻"];
+    const greeting = document.getElementById('greeting');
+    const greetingEmoji = document.getElementById('greeting-emoji');
+    greeting.addEventListener('mouseenter', () => {
+      greetingEmoji.classList.add('spin');
+    });
+    greeting.addEventListener('mouseleave', () => {
+      greetingEmoji.classList.remove('spin');
+    });
+    greeting.addEventListener('click', () => {
+      const idx = Math.floor(Math.random() * greetings.length);
+      const emojiIdx = Math.floor(Math.random() * emojis.length);
+      greeting.innerHTML = greetings[idx] + ' <span class="fun-emoji" id="greeting-emoji">' + emojis[emojiIdx] + '</span>';
+    });
+
+    // Animated skill bars
+    function animateSkillBars() {
+      document.querySelectorAll('.skill').forEach(skill => {
+        const bar = skill.querySelector('.skill-bar');
+        if (bar) {
+          setTimeout(() => {
+            bar.style.width = skill.getAttribute('data-level') + '%';
+          }, Math.random() * 800 + 200);
+        }
+      });
+    }
+    window.addEventListener('DOMContentLoaded', animateSkillBars);
+    // Animate again on theme toggle for fun
+    themeToggle.addEventListener('click', animateSkillBars);
+
+    // Interactive experience cards
+    document.querySelectorAll('.exp-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+        item.style.background = item.classList.contains('active') ? 'rgba(99,102,241,0.12)' : 'transparent';
+      });
+    });
+
+    // Particle background with wireframe cube
+    const canvas = document.getElementById('particle-bg');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let cubeAngle = 0;
     
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    function createParticles() {
+      particles = [];
+      for (let i = 0; i < 60; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2.5 + 1.5,
+          dx: (Math.random() - 0.5) * 0.7,
+          dy: (Math.random() - 0.5) * 0.7,
+          color: `hsla(${Math.random()*360}, 80%, 70%, 0.7)`
+        });
+      }
+    }
+    
+    // Wireframe cube functions
+    function rotate3DPoint(x, y, z, angleX, angleY, angleZ) {
+      // Rotate around X axis
+      const cosX = Math.cos(angleX);
+      const sinX = Math.sin(angleX);
+      const y1 = y * cosX - z * sinX;
+      const z1 = y * sinX + z * cosX;
+      
+      // Rotate around Y axis
+      const cosY = Math.cos(angleY);
+      const sinY = Math.sin(angleY);
+      const x2 = x * cosY + z1 * sinY;
+      const z2 = -x * sinY + z1 * cosY;
+      
+      // Rotate around Z axis
+      const cosZ = Math.cos(angleZ);
+      const sinZ = Math.sin(angleZ);
+      const x3 = x2 * cosZ - y1 * sinZ;
+      const y3 = x2 * sinZ + y1 * cosZ;
+      
+      return { x: x3, y: y3, z: z2 };
+    }
+    
+    function project3DTo2D(x, y, z, distance = 200) {
+      const scale = distance / (distance + z);
+      return {
+        x: x * scale + canvas.width / 2,
+        y: y * scale + canvas.height / 2
+      };
+    }
+    
+    function drawWireframeCube() {
+      const size = 100;
+      const gridSize = 20; // Size of each grid cell
+      const gridPoints = [];
+      
+      // Create grid points for each face
+      for (let i = 0; i <= 4; i++) {
+        for (let j = 0; j <= 4; j++) {
+          // Front face
+          gridPoints.push([
+            -size + (i * gridSize),
+            -size + (j * gridSize),
+            -size
+          ]);
+          // Back face
+          gridPoints.push([
+            -size + (i * gridSize),
+            -size + (j * gridSize),
+            size
+          ]);
+          // Left face
+          gridPoints.push([
+            -size,
+            -size + (i * gridSize),
+            -size + (j * gridSize)
+          ]);
+          // Right face
+          gridPoints.push([
+            size,
+            -size + (i * gridSize),
+            -size + (j * gridSize)
+          ]);
+          // Top face
+          gridPoints.push([
+            -size + (i * gridSize),
+            -size,
+            -size + (j * gridSize)
+          ]);
+          // Bottom face
+          gridPoints.push([
+            -size + (i * gridSize),
+            size,
+            -size + (j * gridSize)
+          ]);
+        }
+      }
+      
+      // Remove duplicate points
+      const uniquePoints = [];
+      const seen = new Set();
+      gridPoints.forEach(point => {
+        const key = point.join(',');
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniquePoints.push(point);
+        }
+      });
+      
+      // Rotate all points
+      const rotatedPoints = uniquePoints.map(point => 
+        rotate3DPoint(point[0], point[1], point[2], cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3)
+      );
+      
+      // Project to 2D
+      const projectedPoints = rotatedPoints.map(point => 
+        project3DTo2D(point.x, point.y, point.z)
+      );
+      
+      // Draw grid lines
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+      ctx.lineWidth = 1;
+      ctx.lineCap = 'round';
+      
+      // Draw horizontal and vertical lines for each face
+      for (let i = 0; i <= 4; i++) {
+        for (let j = 0; j <= 4; j++) {
+          // Find corresponding points for grid lines
+          const x1 = -size + (i * gridSize);
+          const y1 = -size + (j * gridSize);
+          
+          // Front face horizontal lines
+          const frontH1 = rotate3DPoint(x1, -size, -size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const frontH2 = rotate3DPoint(x1, size, -size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const frontH1Proj = project3DTo2D(frontH1.x, frontH1.y, frontH1.z);
+          const frontH2Proj = project3DTo2D(frontH2.x, frontH2.y, frontH2.z);
+          
+          // Front face vertical lines
+          const frontV1 = rotate3DPoint(-size, y1, -size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const frontV2 = rotate3DPoint(size, y1, -size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const frontV1Proj = project3DTo2D(frontV1.x, frontV1.y, frontV1.z);
+          const frontV2Proj = project3DTo2D(frontV2.x, frontV2.y, frontV2.z);
+          
+          // Back face horizontal lines
+          const backH1 = rotate3DPoint(x1, -size, size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const backH2 = rotate3DPoint(x1, size, size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const backH1Proj = project3DTo2D(backH1.x, backH1.y, backH1.z);
+          const backH2Proj = project3DTo2D(backH2.x, backH2.y, backH2.z);
+          
+          // Back face vertical lines
+          const backV1 = rotate3DPoint(-size, y1, size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const backV2 = rotate3DPoint(size, y1, size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const backV1Proj = project3DTo2D(backV1.x, backV1.y, backV1.z);
+          const backV2Proj = project3DTo2D(backV2.x, backV2.y, backV2.z);
+          
+          // Draw lines
+          ctx.beginPath();
+          ctx.moveTo(frontH1Proj.x, frontH1Proj.y);
+          ctx.lineTo(frontH2Proj.x, frontH2Proj.y);
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.moveTo(frontV1Proj.x, frontV1Proj.y);
+          ctx.lineTo(frontV2Proj.x, frontV2Proj.y);
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.moveTo(backH1Proj.x, backH1Proj.y);
+          ctx.lineTo(backH2Proj.x, backH2Proj.y);
+          ctx.stroke();
+          
+          ctx.beginPath();
+          ctx.moveTo(backV1Proj.x, backV1Proj.y);
+          ctx.lineTo(backV2Proj.x, backV2Proj.y);
+          ctx.stroke();
+        }
+      }
+      
+      // Draw connecting lines between front and back faces
+      for (let i = 0; i <= 4; i++) {
+        for (let j = 0; j <= 4; j++) {
+          const x = -size + (i * gridSize);
+          const y = -size + (j * gridSize);
+          
+          const frontPoint = rotate3DPoint(x, y, -size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const backPoint = rotate3DPoint(x, y, size, cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3);
+          const frontProj = project3DTo2D(frontPoint.x, frontPoint.y, frontPoint.z);
+          const backProj = project3DTo2D(backPoint.x, backPoint.y, backPoint.z);
+          
+          ctx.beginPath();
+          ctx.moveTo(frontProj.x, frontProj.y);
+          ctx.lineTo(backProj.x, backProj.y);
+          ctx.stroke();
+        }
+      }
+      
+      // Draw main cube edges with thicker lines
+      const mainEdges = [
+        [0, 1], [1, 2], [2, 3], [3, 0], // Front face
+        [4, 5], [5, 6], [6, 7], [7, 4], // Back face
+        [0, 4], [1, 5], [2, 6], [3, 7]  // Connecting edges
+      ];
+      
+      const mainCubePoints = [
+        [-size, -size, -size], [size, -size, -size], [size, size, -size], [-size, size, -size],
+        [-size, -size, size], [size, -size, size], [size, size, size], [-size, size, size]
+      ];
+      
+      const rotatedMainPoints = mainCubePoints.map(point => 
+        rotate3DPoint(point[0], point[1], point[2], cubeAngle * 0.5, cubeAngle, cubeAngle * 0.3)
+      );
+      
+      const projectedMainPoints = rotatedMainPoints.map(point => 
+        project3DTo2D(point.x, point.y, point.z)
+      );
+      
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.4)';
+      ctx.lineWidth = 3;
+      
+      mainEdges.forEach(edge => {
+        const p1 = projectedMainPoints[edge[0]];
+        const p2 = projectedMainPoints[edge[1]];
+        
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      });
+      
+      // Draw vertices
+      projectedMainPoints.forEach(point => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 4, 0, 2 * Math.PI);
+        ctx.fillStyle = 'rgba(99, 102, 241, 0.6)';
+        ctx.fill();
+      });
+    }
+    
+    createParticles();
+    
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw wireframe cube
+      drawWireframeCube();
+      cubeAngle += 0.01;
+      
+      // Draw particles
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      }
+      
+      requestAnimationFrame(animateParticles);
+    }
+    
+    animateParticles();
+    // Recreate particles on resize
+    window.addEventListener('resize', createParticles);
+  </script>
 </body>
 </html>
