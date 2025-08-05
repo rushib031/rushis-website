@@ -8,12 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="light">
+<body data-theme="dark">
   <canvas class="particle-bg" id="particle-bg"></canvas>
   <header>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
     <img src="project-images/profile-pic.png" alt="Profile photo" class="profile-img" id="profile-img">
-    <div class="greeting" id="greeting">Hi, I'm Rushi! <span class="fun-emoji" id="greeting-emoji">👋</span></div>
     <div class="name">Rushi Rohit Bhatt</div>
     <div class="subtitle">Bringing problem-solving skills, perseverance, and energy to any position</div>
     <div class="contact">
@@ -34,46 +33,109 @@
       </div>
     </section>
     <section>
-      <h2>Experience</h2>
-      <div class="exp-list" id="exp-list">
+      <h2>Experience & Skills</h2>
+      <div class="exp-grid">
         <div class="exp-item">
-          <div class="exp-title">IT Analyst (Part-time)</div>
-          <div class="exp-org">Ohio State University Office of Technology and Digital Innovation</div>
-          <div class="exp-date">December 2023 - Present</div>
-          <div class="exp-desc">Manage call queues and address software-related issues for students, faculty, and staff. Hone technical troubleshooting and customer service skills. Work with remote desktop connection services, Active Directory, ServiceNow, and identity management software.</div>
+          <div class="exp-content">
+            <div class="exp-title">IT Analyst (Part-time)</div>
+            <div class="exp-org">Ohio State University Office of Technology and Digital Innovation</div>
+            <div class="exp-date">December 2023 - Present</div>
+            <div class="exp-desc">Manage call queues and address software-related issues for students, faculty, and staff. Hone technical troubleshooting and customer service skills. Work with remote desktop connection services, Active Directory, ServiceNow, and identity management software.</div>
+          </div>
+          <div class="exp-skills">
+            <h4>Skills Used:</h4>
+            <div class="skills-list">
+              <span class="skill" data-skill="Active Directory">Active Directory</span>
+              <span class="skill" data-skill="ServiceNow">ServiceNow</span>
+              <span class="skill" data-skill="Remote Desktop">Remote Desktop</span>
+              <span class="skill" data-skill="Customer Service">Customer Service</span>
+              <span class="skill" data-skill="Troubleshooting">Troubleshooting</span>
+            </div>
+          </div>
         </div>
         <div class="exp-item">
-          <div class="exp-title">Cybersecurity Club Member</div>
-          <div class="exp-org">Ohio State University</div>
-          <div class="exp-date">December 2023 - Present</div>
-          <div class="exp-desc">Participate in weekly meetings on ethical hacking topics (cryptography, SQL injection, decryption, PWN, etc.). Competed in Buckeye CTF competition, solving ethical hacking challenges with OSU students.</div>
+          <div class="exp-content">
+            <div class="exp-title">Cybersecurity Club Member</div>
+            <div class="exp-org">Ohio State University</div>
+            <div class="exp-date">December 2023 - Present</div>
+            <div class="exp-desc">Participate in weekly meetings on ethical hacking topics (cryptography, SQL injection, decryption, PWN, etc.). Competed in Buckeye CTF competition, solving ethical hacking challenges with OSU students.</div>
+          </div>
+          <div class="exp-skills">
+            <h4>Skills Used:</h4>
+            <div class="skills-list">
+              <span class="skill" data-skill="Cryptography">Cryptography</span>
+              <span class="skill" data-skill="SQL Injection">SQL Injection</span>
+              <span class="skill" data-skill="CTF">CTF</span>
+              <span class="skill" data-skill="Ethical Hacking">Ethical Hacking</span>
+              <span class="skill" data-skill="Decryption">Decryption</span>
+            </div>
+          </div>
         </div>
         <div class="exp-item">
-          <div class="exp-title">Data Engineering Intern (Part-time)</div>
-          <div class="exp-org">AaronBux Wealth Management</div>
-          <div class="exp-date">December 2024 - March 2025</div>
-          <div class="exp-desc">Implemented ETL pipeline with AWS. Learned and worked with AWS S3, Lambda, Redshift, CloudWatch, and more.</div>
+          <div class="exp-content">
+            <div class="exp-title">Data Engineering Intern (Part-time)</div>
+            <div class="exp-org">AaronBux Wealth Management</div>
+            <div class="exp-date">December 2024 - March 2025</div>
+            <div class="exp-desc">Implemented ETL pipeline with AWS. Learned and worked with AWS S3, Lambda, Redshift, CloudWatch, and more.</div>
+          </div>
+          <div class="exp-skills">
+            <h4>Skills Used:</h4>
+            <div class="skills-list">
+              <span class="skill" data-skill="AWS S3">AWS S3</span>
+              <span class="skill" data-skill="AWS Lambda">AWS Lambda</span>
+              <span class="skill" data-skill="AWS Redshift">AWS Redshift</span>
+              <span class="skill" data-skill="AWS CloudWatch">AWS CloudWatch</span>
+              <span class="skill" data-skill="ETL Pipeline">ETL Pipeline</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <section>
-      <h2>Skills</h2>
+      <h2>Certifications</h2>
+      <div class="exp-grid">
+        <div class="exp-item">
+          <div class="exp-content">
+            <div class="exp-title">CompTIA Security+</div>
+            <div class="exp-org">CompTIA</div>
+            <div class="exp-date">July 2025 - July 2028</div>
+            <div class="exp-desc">Professional certification in information security. Credential ID: XNVEYVRQXM41KJ62</div>
+            <div class="cert-link">
+              <a href="https://www.credly.com/badges/42a0ec22-f9ca-4305-b813-683b4fdece62/linked_in_profile" target="_blank" class="cert-badge">
+                <i class="fas fa-certificate"></i> View Credential
+              </a>
+            </div>
+          </div>
+          <div class="exp-skills">
+            <h4>Skills Covered:</h4>
+            <div class="skills-list">
+              <span class="skill" data-skill="Network Security">Network Security</span>
+              <span class="skill" data-skill="Threat Management">Threat Management</span>
+              <span class="skill" data-skill="Cryptography">Cryptography</span>
+              <span class="skill" data-skill="Identity Management">Identity Management</span>
+              <span class="skill" data-skill="Risk Management">Risk Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Technical Skills</h2>
       <div class="skills-list" id="skills-list">
-        <span class="skill" data-skill="Java" data-level="90">Java<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="C" data-level="80">C<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="Incident Response" data-level="70">Incident Response<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="Assembly" data-level="60">Assembly<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="MATLAB" data-level="60">MATLAB<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="HTML" data-level="95">HTML<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="CSS" data-level="90">CSS<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="Python" data-level="85">Python<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="Visual Studio" data-level="75">Visual Studio<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="Jupyter Notebook" data-level="70">Jupyter Notebook<div class="skill-bar"></div></span>
-        <span class="skill" data-skill="Object Oriented Programming" data-level="90">Object Oriented Programming<div class="skill-bar"></div></span>
+        <span class="skill" data-skill="Java">Java</span>
+        <span class="skill" data-skill="C">C</span>
+        <span class="skill" data-skill="Python">Python</span>
+        <span class="skill" data-skill="HTML">HTML</span>
+        <span class="skill" data-skill="CSS">CSS</span>
+        <span class="skill" data-skill="Assembly">Assembly</span>
+        <span class="skill" data-skill="MATLAB">MATLAB</span>
+        <span class="skill" data-skill="Visual Studio">Visual Studio</span>
+        <span class="skill" data-skill="Jupyter Notebook">Jupyter Notebook</span>
+        <span class="skill" data-skill="Object Oriented Programming">Object Oriented Programming</span>
+        <span class="skill" data-skill="Incident Response">Incident Response</span>
       </div>
       <div style="color:var(--muted); font-size:0.98rem; margin-bottom:0.5rem;">
-        3rd place in Ohio Cyber Range Institute Statewide Capture the Flag competition<br>
-        Working towards CompTIA Security+ Certification (Expected July 2025)
+        3rd place in Ohio Cyber Range Institute Statewide Capture the Flag competition
       </div>
     </section>
     <section>

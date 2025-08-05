@@ -4,63 +4,78 @@ document.addEventListener('DOMContentLoaded', () => {
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    let dark = false;
+    let dark = true; // Start in dark theme
+    
+    // Set initial theme toggle icon
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     
     themeToggle.addEventListener('click', () => {
         dark = !dark;
         body.setAttribute('data-theme', dark ? 'dark' : 'light');
         themeToggle.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         
-        // Re-animate skill bars on theme toggle
-        animateSkillBars();
+        // Re-initialize skill effects on theme toggle
+        initSkillEffects();
     });
 
-    // Fun greeting functionality
-    const greetings = [
-        "Hi, I'm Rushi!",
-        "Welcome!",
-        "Let's connect!",
-        "Namaste!",
-        "Hola!",
-        "Bonjour!",
-        "Ciao!",
-        "Ready to solve problems!",
-        "Cybersecurity Enthusiast!",
-        "Let's hack!"
-    ];
-    
-    const emojis = ["👋", "😃", "🚀", "💡", "🛡️", "🎉", "🤖", "🧠", "🌟", "💻"];
-    const greeting = document.getElementById('greeting');
-    const greetingEmoji = document.getElementById('greeting-emoji');
-    
-    greeting.addEventListener('mouseenter', () => {
-        greetingEmoji.classList.add('spin');
-    });
-    
-    greeting.addEventListener('mouseleave', () => {
-        greetingEmoji.classList.remove('spin');
-    });
-    
-    greeting.addEventListener('click', () => {
-        const idx = Math.floor(Math.random() * greetings.length);
-        const emojiIdx = Math.floor(Math.random() * emojis.length);
-        greeting.innerHTML = greetings[idx] + ' <span class="fun-emoji" id="greeting-emoji">' + emojis[emojiIdx] + '</span>';
-    });
-
-    // Animated skill bars
-    function animateSkillBars() {
-        document.querySelectorAll('.skill').forEach(skill => {
-            const bar = skill.querySelector('.skill-bar');
-            if (bar) {
-                setTimeout(() => {
-                    bar.style.width = skill.getAttribute('data-level') + '%';
-                }, Math.random() * 800 + 200);
+    // Scroll-aware theme toggle button
+    function initScrollAwareToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        function updateTogglePosition() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const maxScroll = documentHeight - windowHeight;
+            
+            // Calculate scroll percentage (0 to 1)
+            const scrollPercentage = Math.min(scrollY / maxScroll, 1);
+            
+            // Calculate available space for toggle movement
+            const toggleHeight = 44; // Height of toggle button
+            const maxMovement = windowHeight - toggleHeight - 60; // 60px padding from top/bottom
+            
+            // Move toggle button proportionally to scroll
+            const newTop = 1.5 + (scrollPercentage * maxMovement / 16); // Convert to rem units
+            themeToggle.style.top = `${newTop}rem`;
+        }
+        
+        // Throttle scroll events for performance
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateTogglePosition();
+                    ticking = false;
+                });
+                ticking = true;
             }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+        
+        // Initial position update
+        updateTogglePosition();
+    }
+    
+    // Initialize scroll-aware toggle
+    initScrollAwareToggle();
+
+    // Skill hover effects (no longer animating bars)
+    function initSkillEffects() {
+        document.querySelectorAll('.skill').forEach(skill => {
+            skill.addEventListener('mouseenter', () => {
+                skill.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            skill.addEventListener('mouseleave', () => {
+                skill.style.transform = 'translateY(0) scale(1)';
+            });
         });
     }
     
-    // Initialize skill bars
-    animateSkillBars();
+    // Initialize skill effects
+    initSkillEffects();
 
     // Interactive experience cards
     document.querySelectorAll('.exp-item').forEach(item => {
