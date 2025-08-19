@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const cubeToggle = document.getElementById('cube-toggle');
     let cubeVisible = false; // Start with cube hidden
     
-    // Set initial cube toggle icon to show it's hidden
-    cubeToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    // Set initial cube toggle icon to show a cube (indicating you can click to show it)
+    cubeToggle.innerHTML = '<i class="fas fa-cube"></i>';
     
     cubeToggle.addEventListener('click', () => {
         cubeVisible = !cubeVisible;
-        cubeToggle.innerHTML = cubeVisible ? '<i class="fas fa-cube"></i>' : '<i class="fas fa-eye-slash"></i>';
+        cubeToggle.innerHTML = cubeVisible ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-cube"></i>';
         
         // Toggle cube visibility in particle background
         if (window.toggleCube) {
