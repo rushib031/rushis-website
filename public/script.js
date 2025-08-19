@@ -18,48 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
         initSkillEffects();
     });
 
-    // Scroll-aware theme toggle button
-    function initScrollAwareToggle() {
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        function updateTogglePosition() {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const maxScroll = documentHeight - windowHeight;
-            
-            // Calculate scroll percentage (0 to 1)
-            const scrollPercentage = Math.min(scrollY / maxScroll, 1);
-            
-            // Calculate available space for toggle movement
-            const toggleHeight = 44; // Height of toggle button
-            const maxMovement = windowHeight - toggleHeight - 60; // 60px padding from top/bottom
-            
-            // Move toggle button proportionally to scroll
-            const newTop = 1.5 + (scrollPercentage * maxMovement / 16); // Convert to rem units
-            themeToggle.style.top = `${newTop}rem`;
-        }
-        
-        // Throttle scroll events for performance
-        let ticking = false;
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    updateTogglePosition();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', requestTick);
-        
-        // Initial position update
-        updateTogglePosition();
-    }
+    // Cube toggle functionality
+    const cubeToggle = document.getElementById('cube-toggle');
+    let cubeVisible = true; // Start with cube visible
     
-    // Initialize scroll-aware toggle
-    initScrollAwareToggle();
+    cubeToggle.addEventListener('click', () => {
+        cubeVisible = !cubeVisible;
+        cubeToggle.innerHTML = cubeVisible ? '<i class="fas fa-cube"></i>' : '<i class="fas fa-eye-slash"></i>';
+        
+        // Toggle cube visibility in particle background
+        if (window.toggleCube) {
+            window.toggleCube(cubeVisible);
+        }
+    });
+
+
 
     // Skill hover effects (no longer animating bars)
     function initSkillEffects() {
@@ -95,6 +68,7 @@ function initParticleBackground() {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let cubeAngle = 0;
+    let cubeVisible = true; // Track cube visibility state
     
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -341,9 +315,11 @@ function initParticleBackground() {
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Draw wireframe cube
-        drawWireframeCube();
-        cubeAngle += 0.01;
+        // Draw wireframe cube only if visible
+        if (cubeVisible) {
+            drawWireframeCube();
+            cubeAngle += 0.01;
+        }
         
         // Draw particles
         for (let p of particles) {
@@ -361,6 +337,11 @@ function initParticleBackground() {
         
         requestAnimationFrame(animateParticles);
     }
+    
+    // Function to toggle cube visibility (accessible globally)
+    window.toggleCube = function(visible) {
+        cubeVisible = visible;
+    };
     
     animateParticles();
     
