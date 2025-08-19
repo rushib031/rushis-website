@@ -277,6 +277,12 @@ h2 {
   transition: color var(--transition);
 }
 
+/* Center align About section */
+section:first-of-type h2,
+section:first-of-type > div {
+  text-align: center;
+}
+
 /* Lists */
 ul, li {
   margin: 0;
