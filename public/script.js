@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cube toggle functionality
     const cubeToggle = document.getElementById('cube-toggle');
-    let cubeVisible = true; // Start with cube visible
+    let cubeVisible = false; // Start with cube hidden
+    
+    // Set initial cube toggle icon to show it's hidden
+    cubeToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
     
     cubeToggle.addEventListener('click', () => {
         cubeVisible = !cubeVisible;
@@ -68,7 +71,7 @@ function initParticleBackground() {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let cubeAngle = 0;
-    let cubeVisible = true; // Track cube visibility state
+    let cubeVisible = false; // Track cube visibility state - start hidden
     
     function resizeCanvas() {
         canvas.width = window.innerWidth;
